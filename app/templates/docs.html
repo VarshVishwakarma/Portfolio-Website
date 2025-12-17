@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="max-w-4xl mx-auto py-20 px-6">
+    <div class="border-b border-gray-800 pb-8 mb-12">
+        <h1 class="text-4xl font-cyber font-bold mb-2">SYSTEM <span class="text-neonBlue">DOCUMENTATION</span></h1>
+        <p class="font-mono text-gray-500">Architecture Overview and API Endpoints</p>
+    </div>
+
+    <div class="mb-12">
+        <h2 class="text-2xl font-cyber text-white mb-6 flex items-center">
+            <span class="text-neonRed mr-3">//</span> CORE STACK
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-card p-4 border-l-2 border-neonBlue">
+                <div class="font-bold text-white">FastAPI</div>
+                <div class="text-xs text-gray-400">High-perf Async Backend</div>
+            </div>
+            <div class="glass-card p-4 border-l-2 border-neonBlue">
+                <div class="font-bold text-white">Jinja2</div>
+                <div class="text-xs text-gray-400">Server-Side Rendering</div>
+            </div>
+            <div class="glass-card p-4 border-l-2 border-neonBlue">
+                <div class="font-bold text-white">Tailwind</div>
+                <div class="text-xs text-gray-400">Utility-First CSS</div>
+            </div>
+            <div class="glass-card p-4 border-l-2 border-neonBlue">
+                <div class="font-bold text-white">Cyber UI</div>
+                <div class="text-xs text-gray-400">Custom Design System</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-12">
+        <h2 class="text-2xl font-cyber text-white mb-6 flex items-center">
+            <span class="text-neonRed mr-3">//</span> API ENDPOINTS
+        </h2>
+        <div class="space-y-4 font-mono text-sm">
+            <div class="bg-gray-900 p-4 rounded border border-gray-800 flex flex-col md:flex-row gap-4">
+                <span class="text-neonBlue font-bold">POST /api/nlp</span>
+                <span class="text-gray-400">Accepts JSON {text: str} -> Returns Sentiment Analysis</span>
+            </div>
+            <div class="bg-gray-900 p-4 rounded border border-gray-800 flex flex-col md:flex-row gap-4">
+                <span class="text-neonRed font-bold">POST /api/contact</span>
+                <span class="text-gray-400">Handles form submission -> SMTP Email Trigger</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

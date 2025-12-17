@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* TERMINAL STYLES (Preserved & Enhanced) */
+    .terminal-container {
+        height: 85vh;
+        width: 100%;
+        max-width: 1000px;
+        background: rgba(10, 10, 15, 0.95);
+        border: 1px solid #333;
+        box-shadow: 0 0 50px rgba(0, 230, 255, 0.05);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        font-family: 'JetBrains Mono', monospace;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .terminal-header {
+        background: #151515;
+        padding: 12px 20px;
+        border-bottom: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .dots {
+        display: flex;
+        gap: 8px;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+    }
+
+    .dot.red {
+        background: #FF5F56;
+    }
+
+    .dot.yellow {
+        background: #FFBD2E;
+    }
+
+    .dot.green {
+        background: #27C93F;
+    }
+
+    /* 🆕 MODE SELECTOR */
+    .mode-select {
+        background: #000;
+        color: #00E6FF;
+        border: 1px solid #333;
+        padding: 4px 8px;
+        font-family: inherit;
+        font-size: 12px;
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .mode-select:hover {
+        border-color: #00E6FF;
+    }
+
+    /* CHAT BODY */
+    .terminal-body {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        color: #e5e7eb;
+        font-size: 14px;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* MESSAGES */
+    .msg {
+        max-width: 85%;
+        padding: 10px 15px;
+        border-radius: 4px;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .msg.ai {
+        align-self: flex-start;
+        color: #00E6FF;
+        border-left: 2px solid #00E6FF;
+        background: rgba(0, 230, 255, 0.05);
+    }
+
+    .msg.user {
+        align-self: flex-end;
+        color: #FF003C;
+        border-right: 2px solid #FF003C;
+        background: rgba(255, 0, 60, 0.05);
+        text-align: right;
+    }
+
+    .msg.system {
+        align-self: center;
+        color: #666;
+        font-size: 12px;
+        font-style: italic;
+        border: none;
+        background: transparent;
+    }
+
+    /* INPUT AREA */
+    .terminal-input {
+        background: #000;
+        border-top: 1px solid #333;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .prompt {
+        color: #27C93F;
+        font-weight: bold;
+    }
+
+    input {
+        background: transparent;
+        border: none;
+        color: white;
+        flex: 1;
+        font-family: inherit;
+        font-size: 14px;
+        outline: none;
+    }
+
+    /* 🆕 METRICS PANEL */
+    .metrics-panel {
+        font-size: 10px;
+        color: #555;
+        text-align: right;
+        padding: 5px 20px;
+        background: #0a0a0a;
+        border-top: 1px solid #222;
+    }
+
+    .metric-value {
+        color: #00E6FF;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .terminal-body::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .terminal-body::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 3px;
+    }
+</style>
+
+<section class="min-h-screen flex items-center justify-center px-4 pt-24 pb-10">
+    <div class="terminal-container fade-in-up">
+
+        <div class="terminal-header">
+            <div class="dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <select id="ai-mode" class="mode-select">
+                    <option value="explain">MODE: EXPLAIN</option>
+                    <option value="debug">MODE: DEBUG</option>
+                    <option value="summarize">MODE: SUMMARIZE</option>
+                    <option value="ml_help">MODE: ML TUTOR</option>
+                </select>
+                <div class="text-xs text-gray-500 tracking-widest hidden md:block">VARSH.AI // v3.1</div>
+            </div>
+        </div>
+
+        <div id="chat-box" class="terminal-body">
+            <div class="msg system">Encrypted Connection Established...</div>
+            <div class="msg ai">
+                >> SYSTEM ONLINE.<br>
+                >> MODEL: GROQ Llama 3 70B.<br>
+                >> SELECT A MODE ABOVE OR TYPE TO BEGIN.
+            </div>
+        </div>
+
+        <div class="terminal-input">
+            <span class="prompt">visitor@varsh:~$</span>
+            <input type="text" id="user-input" placeholder="Enter command..." autocomplete="off">
+        </div>
+
+        <div class="metrics-panel">
+            LATENCY: <span id="latency-metric" class="metric-value">--ms</span> |
+            STATUS: <span class="metric-value" style="color:#27C93F">OPERATIONAL</span> |
+            RATE LIMIT: <span class="metric-value">ACTIVE</span>
+        </div>
+    </div>
+</section>
+
+<script>
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const modeSelect = document.getElementById('ai-mode');
+    const latencyDisplay = document.getElementById('latency-metric');
+
+    userInput.focus();
+
+    userInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    async function sendMessage() {
+        const text = userInput.value.trim();
+        const mode = modeSelect.value; // Get selected mode
+
+        if (!text) return;
+
+        // 1. Show User Message
+        addMessage('user', text);
+        userInput.value = '';
+
+        // 2. Show Loading
+        const loadingId = 'loading-' + Date.now();
+        const loadingDiv = document.createElement('div');
+        loadingDiv.id = loadingId;
+        loadingDiv.className = 'msg ai';
+        loadingDiv.innerHTML = ">> ANALYZING...";
+        chatBox.appendChild(loadingDiv);
+        scrollToBottom();
+
+        try {
+            // 3. Send to Backend
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, mode: mode }) // Send mode
+            });
+
+            const data = await response.json();
+
+            // 4. Update UI
+            document.getElementById(loadingId).remove();
+            typeWriter(data.response);
+
+            // Update Latency Metric if provided
+            if (data.metrics) {
+                latencyDisplay.innerText = data.metrics;
+            }
+
+        } catch (error) {
+            document.getElementById(loadingId).remove();
+            addMessage('ai', `>> CRITICAL ERROR: ${error.message}`);
+        }
+    }
+
+    function addMessage(role, text) {
+        const div = document.createElement('div');
+        div.className = `msg ${role}`;
+        div.innerHTML = text;
+        chatBox.appendChild(div);
+        scrollToBottom();
+    }
+
+    function typeWriter(text) {
+        const div = document.createElement('div');
+        div.className = 'msg ai';
+        div.innerHTML = ">> ";
+        chatBox.appendChild(div);
+
+        let i = 0;
+        const speed = 5;
+
+        function type() {
+            if (i < text.length) {
+                div.innerHTML += text.charAt(i);
+                i++;
+                scrollToBottom();
+                setTimeout(type, speed);
+            }
+        }
+        type();
+    }
+
+    function scrollToBottom() {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+{% endblock %}

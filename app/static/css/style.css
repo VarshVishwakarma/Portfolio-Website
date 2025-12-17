@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap');
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .brand-font {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Neon Glow Utilities */
+.glow-text-blue { text-shadow: 0 0 10px #00E6FF, 0 0 20px #00E6FF; }
+.glow-text-red { text-shadow: 0 0 10px #FF003C, 0 0 20px #FF003C; }
+
+.glow-box-blue { box-shadow: 0 0 15px rgba(0, 230, 255, 0.3); }
+.glow-box-red { box-shadow: 0 0 15px rgba(255, 0, 60, 0.3); }
+
+/* Glassmorphism */
+.glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Animated Gradient Background */
+.cyber-grid {
+    background-image: linear-gradient(rgba(0, 230, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 230, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+/* Terminal Output */
+.terminal-cursor::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================
+   1. GLOBAL FOUNDATION
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Page Load Animation Class */
+.fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0; /* Starts hidden */
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scroll Reveal Class (Targeted by JS) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   2. HERO ENHANCEMENTS
+   ========================================= */
+
+/* Animated Gradient Title */
+.animate-gradient-text {
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Typing Cursor */
+.typing-cursor::after {
+    content: '|';
+    color: #FF003C; /* Neon Red */
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Floating Background Particles */
+.floating-particle {
+    animation: floatParticle 8s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+}
+
+/* =========================================
+   3. GLASS CARD INTERACTIONS
+   ========================================= */
+.glass-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    /* Prepare for cursor spotlight effect */
+    background-image: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        rgba(255, 255, 255, 0.06), 
+        transparent 40%
+    );
+}
+
+.glass-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 10px 40px -10px rgba(0, 230, 255, 0.2);
+    border-color: rgba(0, 230, 255, 0.5); /* Neon Blue */
+}
+
+/* Staggered Entry for Lists */
+.stagger-child > * {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger-child.is-visible > * {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add delays for up to 10 items */
+.stagger-child.is-visible > *:nth-child(1) { transition-delay: 50ms; }
+.stagger-child.is-visible > *:nth-child(2) { transition-delay: 100ms; }
+.stagger-child.is-visible > *:nth-child(3) { transition-delay: 150ms; }
+.stagger-child.is-visible > *:nth-child(4) { transition-delay: 200ms; }
+.stagger-child.is-visible > *:nth-child(5) { transition-delay: 250ms; }
+.stagger-child.is-visible > *:nth-child(6) { transition-delay: 300ms; }
+
+/* =========================================
+   4. CONTACT & UI MICRO-INTERACTIONS
+   ========================================= */
+/* Button Click Press Effect */
+button:active, a.btn:active {
+    transform: scale(0.95);
+}
+
+/* Success Checkmark Animation */
+.checkmark-draw {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: drawCheck 0.6s ease forwards;
+}
+
+@keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+}

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    /* Architecture Diagram Styles */
+    .flow-line {
+        height: 40px;
+        width: 2px;
+        background: #333;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .flow-line::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: -4px;
+        width: 10px;
+        height: 10px;
+        background: #00E6FF;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #00E6FF;
+    }
+
+    .arch-box {
+        border: 1px solid #333;
+        padding: 25px;
+        text-align: center;
+        border-radius: 12px;
+        background: rgba(20, 20, 20, 0.8);
+        transition: 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .arch-box:hover {
+        border-color: #00E6FF;
+        box-shadow: 0 0 30px rgba(0, 230, 255, 0.15);
+        transform: translateY(-5px);
+    }
+
+    /* Specific Colors */
+    .border-red {
+        border-color: rgba(255, 0, 60, 0.3);
+    }
+
+    .border-red:hover {
+        border-color: #FF003C;
+        box-shadow: 0 0 30px rgba(255, 0, 60, 0.15);
+    }
+
+    .border-purple {
+        border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .border-purple:hover {
+        border-color: #a855f7;
+        box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+    }
+</style>
+
+<section class="min-h-screen pt-32 px-6 pb-20">
+    <div class="max-w-4xl mx-auto text-center fade-in-up">
+
+        <a href="/" class="text-xs font-mono text-gray-500 hover:text-neonBlue mb-8 block">
+            << RETURN TO BASE</a>
+
+                <h1 class="text-4xl md:text-5xl font-cyber font-bold text-white mb-16">SYSTEM <span
+                        class="text-neonBlue">ARCHITECTURE</span></h1>
+
+                <div class="max-w-md mx-auto relative">
+
+                    <div class="arch-box">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-neonBlue"></div>
+                        <h3 class="text-white font-bold text-xl font-cyber">CLIENT LAYER</h3>
+                        <p class="text-xs text-gray-400 mt-2 font-mono">Browser / Jinja2 Templates</p>
+                        <div class="mt-3 flex justify-center gap-2">
+                            <span
+                                class="text-[10px] bg-blue-900/30 text-blue-300 px-2 py-1 rounded border border-blue-500/20">HTML5</span>
+                            <span
+                                class="text-[10px] bg-blue-900/30 text-blue-300 px-2 py-1 rounded border border-blue-500/20">Tailwind</span>
+                            <span
+                                class="text-[10px] bg-blue-900/30 text-blue-300 px-2 py-1 rounded border border-blue-500/20">JS</span>
+                        </div>
+                    </div>
+
+                    <div class="flow-line"></div>
+
+                    <div class="arch-box border-red">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-neonRed"></div>
+                        <h3 class="text-neonRed font-bold text-xl font-cyber">SERVER CORE</h3>
+                        <p class="text-xs text-gray-400 mt-2 font-mono">FastAPI / Uvicorn</p>
+                        <div class="mt-3 flex justify-center gap-2">
+                            <span
+                                class="text-[10px] bg-red-900/30 text-red-300 px-2 py-1 rounded border border-red-500/20">Python
+                                3.10</span>
+                            <span
+                                class="text-[10px] bg-red-900/30 text-red-300 px-2 py-1 rounded border border-red-500/20">Pydantic</span>
+                            <span
+                                class="text-[10px] bg-red-900/30 text-red-300 px-2 py-1 rounded border border-red-500/20">Starlette</span>
+                        </div>
+                    </div>
+
+                    <div class="flow-line"></div>
+
+                    <div class="arch-box border-purple">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+                        <h3 class="text-purple-400 font-bold text-xl font-cyber">INFERENCE ENGINE</h3>
+                        <p class="text-xs text-gray-400 mt-2 font-mono">Groq LPU Cloud</p>
+                        <div class="mt-3 flex justify-center gap-2">
+                            <span
+                                class="text-[10px] bg-purple-900/30 text-purple-300 px-2 py-1 rounded border border-purple-500/20">Llama
+                                3 70B</span>
+                            <span
+                                class="text-[10px] bg-purple-900/30 text-purple-300 px-2 py-1 rounded border border-purple-500/20">JSON
+                                API</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-24 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                    <div class="glass-card p-8">
+                        <h3 class="text-lg font-bold text-white mb-4 font-cyber text-neonBlue">WHY FASTAPI?</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Selected for its native <strong>asynchronous</strong> capabilities (ASGI), allowing
+                            non-blocking handling of AI requests. Pydantic models ensure strict data validation for the
+                            Chat Interface, preventing injection attacks and malformed payloads.
+                        </p>
+                    </div>
+                    <div class="glass-card p-8">
+                        <h3 class="text-lg font-bold text-white mb-4 font-cyber text-purple-400">WHY GROQ?</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Groq's LPU (Language Processing Unit) architecture delivers tokens at <strong>~300
+                                T/s</strong>, significantly faster than standard GPUs. This eliminates the "lag" typical
+                            of AI chat, preserving the immersive "Real-Time Terminal" feel of this portfolio.
+                        </p>
+                    </div>
+                </div>
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-20 px-6 max-w-7xl mx-auto fade-in-up">
+    <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-cyber font-bold mb-4">DEPLOYED <span class="text-neonBlue">SYSTEMS</span>
+        </h1>
+        <p class="text-gray-400 font-mono">Select production-ready applications.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-child">
+
+        <div
+            class="glass-card group overflow-hidden border border-gray-800 hover:border-neonBlue transition-all duration-500">
+            <div
+                class="h-48 bg-gradient-to-t from-gray-900 to-gray-800 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-neonBlue/10 group-hover:bg-neonBlue/20 transition-all"></div>
+                <span
+                    class="font-cyber text-2xl text-gray-500 group-hover:text-white transition-colors">CINEMA_AI</span>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2 font-cyber">Movie Recommendation System</h3>
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="badge-tech">Python</span>
+                    <span class="badge-tech">ML</span>
+                    <span class="badge-tech">Streamlit</span>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 h-12">
+                    Content-based filtering system using Cosine Similarity to recommend movies based on user
+                    preferences.
+                </p>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 text-xs font-mono cursor-default">REPO PRIVATE</span>
+                    <a href="https://movie-recommendation-smart-system.streamlit.app/" target="_blank"
+                        class="px-3 py-1 bg-neonBlue/10 border border-neonBlue text-neonBlue text-xs font-bold hover:bg-neonBlue hover:text-black transition-all">
+                        [ LIVE SYSTEM ]
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="glass-card group overflow-hidden border border-gray-800 hover:border-green-500 transition-all duration-500">
+            <div
+                class="h-48 bg-gradient-to-t from-gray-900 to-gray-800 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-green-500/10 group-hover:bg-green-500/20 transition-all"></div>
+                <span class="font-cyber text-2xl text-gray-500 group-hover:text-white transition-colors">FIN_TECH</span>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2 font-cyber">MortgageMaster Suite</h3>
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="badge-tech">Python</span>
+                    <span class="badge-tech">FinTech</span>
+                    <span class="badge-tech">PDF Gen</span>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 h-12">
+                    Advanced financial analysis tool producing detailed amortization schedules and PDF reports.
+                </p>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 text-xs font-mono cursor-default">REPO PRIVATE</span>
+                    <a href="https://mortgagemaster.streamlit.app/" target="_blank"
+                        class="px-3 py-1 bg-green-500/10 border border-green-500 text-green-500 text-xs font-bold hover:bg-green-500 hover:text-black transition-all">
+                        [ LIVE SYSTEM ]
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="glass-card group overflow-hidden border border-gray-800 hover:border-neonRed transition-all duration-500">
+            <div
+                class="h-48 bg-gradient-to-t from-gray-900 to-gray-800 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-neonRed/10 group-hover:bg-neonRed/20 transition-all"></div>
+                <span
+                    class="font-cyber text-2xl text-gray-500 group-hover:text-white transition-colors">TRUTH_SEEKER</span>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2 font-cyber">Fake News Detector</h3>
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="badge-tech">Logistic Regression</span>
+                    <span class="badge-tech">TF-IDF</span>
+                    <span class="badge-tech">NLP</span>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 h-12">
+                    NLP classifier achieving high accuracy in distinguishing real vs. fake news articles using
+                    statistical ML.
+                </p>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 text-xs font-mono cursor-default">REPO PRIVATE</span>
+                    <a href="https://freefakenewsdetector.streamlit.app/" target="_blank"
+                        class="px-3 py-1 bg-neonRed/10 border border-neonRed text-neonRed text-xs font-bold hover:bg-neonRed hover:text-black transition-all">
+                        [ LIVE SYSTEM ]
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="glass-card group overflow-hidden border border-gray-800 hover:border-purple-500 transition-all duration-500">
+            <div
+                class="h-48 bg-gradient-to-t from-gray-900 to-gray-800 flex items-center justify-center relative overflow-hidden">
+                <span
+                    class="font-cyber text-2xl text-gray-500 group-hover:text-white transition-colors">MATH_CORE</span>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2 font-cyber">Probability Finder</h3>
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="badge-tech">C++</span>
+                    <span class="badge-tech">OOP</span>
+                    <span class="badge-tech">Statistics</span>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 h-12">
+                    High-performance Object-Oriented application for calculating complex probability scenarios.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="https://github.com/VarshVishwakarma/probability-finder" target="_blank"
+                        class="text-neonBlue hover:text-white text-xs font-bold font-mono">>> SOURCE_CODE</a>
+                    <span class="text-gray-600 text-xs font-mono">[ CLI APP ]</span>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="glass-card group overflow-hidden border border-gray-800 hover:border-yellow-500 transition-all duration-500">
+            <div
+                class="h-48 bg-gradient-to-t from-gray-900 to-gray-800 flex items-center justify-center relative overflow-hidden">
+                <span
+                    class="font-cyber text-2xl text-gray-500 group-hover:text-white transition-colors">LEDGER_SYS</span>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2 font-cyber">Budget App</h3>
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="badge-tech">Python OOP</span>
+                    <span class="badge-tech">Data Viz</span>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 h-12">
+                    Object-Oriented expense tracker with category-wise spending charts and budget balancing.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="https://github.com/VarshVishwakarma/budget-app" target="_blank"
+                        class="text-neonBlue hover:text-white text-xs font-bold font-mono">>> SOURCE_CODE</a>
+                    <span class="text-gray-600 text-xs font-mono">[ CLI APP ]</span>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="glass-card group overflow-hidden border border-gray-800 hover:border-blue-400 transition-all duration-500">
+            <div
+                class="h-48 bg-gradient-to-t from-gray-900 to-gray-800 flex items-center justify-center relative overflow-hidden">
+                <span class="font-cyber text-2xl text-gray-500 group-hover:text-white transition-colors">GEO_CALC</span>
+            </div>
+            <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2 font-cyber">Polygon Area Calculator</h3>
+                <div class="flex gap-2 mb-4 flex-wrap">
+                    <span class="badge-tech">Python</span>
+                    <span class="badge-tech">Geometry</span>
+                    <span class="badge-tech">Inheritance</span>
+                </div>
+                <p class="text-gray-400 text-sm mb-6 h-12">
+                    Class-based system to compute geometry metrics, demonstrating strong OOP inheritance principles.
+                </p>
+                <div class="flex justify-between items-center">
+                    <a href="https://github.com/VarshVishwakarma/polygon-area-calculator" target="_blank"
+                        class="text-neonBlue hover:text-white text-xs font-bold font-mono">>> SOURCE_CODE</a>
+                    <span class="text-gray-600 text-xs font-mono">[ CLI APP ]</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<style>
+    .badge-tech {
+        /* Standard CSS for Badges */
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        background-color: rgba(31, 41, 55, 0.8);
+        /* bg-gray-800 */
+        color: #d1d5db;
+        /* text-gray-300 */
+        padding: 2px 6px;
+        border: 1px solid #374151;
+        /* border-gray-700 */
+        border-radius: 4px;
+        display: inline-block;
+        margin-right: 4px;
+        margin-bottom: 4px;
+    }
+</style>
+{% endblock %}
